@@ -1,42 +1,49 @@
 import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
+import { IconBallFootball,IconBallBasketball,IconBallAmericanFootball,IconMoodHappy,IconCricket, Icon12Hours } from "@tabler/icons-react"
+
 
 import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
-  SidebarGroupContent,
+  SidebarGroupContent,  
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar"  
 
 // Menu items.
 const items = [
   {
     title: "Football",
-    url: "/football",
-    icon: Home,
+    url: "/dashboard/football",
+    icon: IconBallFootball,
   },
   {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
+    title: "Basketball",  
+    url: "/dashboard/basketball",
+    icon: IconBallBasketball,
   },
   {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
+    title: "NFL",
+    url: "/dashboard/nfl",
+    icon: IconBallAmericanFootball,
   },
   {
-    title: "Search",
-    url: "#",
-    icon: Search,
+    title: "Hockey",
+    url: "/dashboard/hockey",
+    icon: IconCricket,
   },
   {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
+    title: "Entertainment",
+    url: "/entertainments",
+    icon: IconMoodHappy,
+  },
+  {
+    title: "Politics",
+    url: "/politics",
+    icon: Icon12Hours,
   },
 ]
 

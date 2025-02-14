@@ -1,9 +1,10 @@
+import GameList from '@/components/GameList'
 import React from 'react'
 
 const Football = () => {
   return (
     <div>
-      Football
+      <GameList/>
     </div>
   )
 }

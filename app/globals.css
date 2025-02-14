@@ -1,12 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  font-family: 'Concert One', cursive;
+  font-family: 'Oswald', serif;
+  font-weight: 400;
 
+}
+
+h1{
+  font-family: 'Concert One',cursive;
 }
 
 @layer base {
@@ -44,7 +50,6 @@ body {
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
-
     
   }
   .dark {

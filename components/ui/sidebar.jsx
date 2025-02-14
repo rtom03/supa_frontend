@@ -395,7 +395,6 @@ const SidebarGroupContent = React.forwardRef(({ className, ...props }, ref) => (
 ))
 SidebarGroupContent.displayName = "SidebarGroupContent"
 
-
 const SidebarMenu = React.forwardRef(({ className, ...props }, ref) => (
   <ul
     ref={ref}
@@ -483,7 +482,6 @@ const SidebarMenuButton = React.forwardRef((
   );
 })
 SidebarMenuButton.displayName = "SidebarMenuButton"
-
 
 const SidebarMenuAction = React.forwardRef(({ className, asChild = false, showOnHover = false, ...props }, ref) => {
   const Comp = asChild ? Slot : "button"

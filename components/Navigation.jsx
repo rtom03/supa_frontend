@@ -14,6 +14,8 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import Image from "next/image";
+import ban from '../public/banner.jpeg'
 
 const components = [
   {
@@ -74,29 +76,37 @@ export function NavigationMenuDemo() {
             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
               <li className="row-span-3">
                 <NavigationMenuLink asChild>
+                  <div>
+
+                
+                <Image
+                    src={ban}
+                    width={300}
+                    height={500}
+                    alt="img"/>
                   <a
                     className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                     href="/"
                   >
                     {/* <Icons.logo className="h-6 w-6" /> */}
-                    <div className="mb-2 mt-4 text-lg font-medium">
-                      shadcn/ui
+                     <div className="mb-2 mt-4 text-lg font-medium">
+                      SupaBetos
                     </div>
                     <p className="text-sm leading-tight text-muted-foreground">
-                      Beautifully designed components built with Radix UI and
-                      Tailwind CSS.
-                    </p>
+                      Making all kinds of betting available
+                    </p>       
                   </a>
+                  </div>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/docs" title="Introduction">
-                Re-usable components built using Radix UI and Tailwind CSS.
+              <ListItem href="/docs" title="Entertainments">
+              Place bets on daily events
               </ListItem>
-              <ListItem href="/docs/installation" title="Installation">
-                How to install dependencies and structure your app.
+              <ListItem href="/docs/installation" title="Politics">
+                Predict the outcome of an election.
               </ListItem>
-              <ListItem href="/docs/primitives/typography" title="Typography">
-                Styles for headings, paragraphs, lists...etc
+              <ListItem href="/docs/primitives/typography" title="Place Bet">
+               Find your bet patner
               </ListItem>
             </ul>
           </NavigationMenuContent>
@@ -121,7 +131,7 @@ export function NavigationMenuDemo() {
                   </a>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/docs" title="Introduction">
+              <ListItem href="/docs" title="Entertainments">
                 Re-usable components built using Radix UI and Tailwind CSS.
               </ListItem>
               <ListItem href="/docs/installation" title="Installation">
