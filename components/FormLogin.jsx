@@ -27,14 +27,9 @@ const handleSubmit = async (e) => {
         });
         const data = await response.json();
         if (response.ok) {
-            // alert(data.message); // "Login successful."
-            // Save tokens to localStorage
-            // localStorage.setItem('access_token', data.tokens.access);
-            // localStorage.setItem('refresh_token', data.tokens.refresh);
             Cookies.set('access_token', data.tokens.access, { secure: true, sameSite: 'Strict' });
             Cookies.set('refresh_token', data.tokens.refresh, { secure: true, sameSite: 'Strict' });
-            // Optionally, save user details to state or localStorage
-            // localStorage.setItem('user', JSON.stringify(data.user));
+
             Cookies.set('user', JSON.stringify(data.user));
 
 
@@ -57,33 +52,6 @@ const handleChange = (e) => {
         ...formData,
         [e.target.name]: e.target.value
     });
-};
-
-
-const refreshToken = localStorage.getItem('refresh_token');
-
-// fetch('http://127.0.0.1:8000/token/refresh/', {
-//     method: 'POST',
-//     headers: {
-//         'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({ refresh: refreshToken }),
-// })
-// .then(response => response.json())
-// .then(data => {
-//     localStorage.setItem('access_token', data.access); // Save the new access token
-//     console.log("New access token:", data.access);
-// })
-// .catch(error => {
-//     console.error("Error refreshing token:", error);
-// });
-
-
-const handleLogout = () => {
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('refresh_token');
-    localStorage.removeItem('user');
-    window.location.href = '/login'; // Redirect to login page
 };
 
 
