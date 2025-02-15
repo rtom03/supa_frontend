@@ -26,7 +26,7 @@ export default function RoomPage() {
       const accessToken = getCookie('access_token'); 
       // console.log("cookie got the token",accessToken)
 
-        const response = await axios.get(`http://127.0.0.1:8000/room/${roomId}/`, {
+        const response = await axios.get(`https://supa-arzf.onrender.com/room/${roomId}/`, {
           headers: {
             Authorization: `Bearer ${accessToken}`, // Ensure authentication
           },
@@ -56,7 +56,7 @@ export default function RoomPage() {
     
     const accessToken = getCookie('access_token'); 
       const response = await axios.post(
-        `http://127.0.0.1:8000/room/${roomId}/`,
+        `https://supa-arzf.onrender.com/room/${roomId}/`,
         { body: message },
         {
           headers: {
