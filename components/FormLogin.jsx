@@ -3,6 +3,8 @@ import { Button } from './ui/button'
 import { Label } from './ui/label'
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Cookies from "js-cookie"; // Install with `npm install js-cookie`
+
 
 
 const FormLogin = () => {
@@ -26,13 +28,15 @@ const handleSubmit = async (e) => {
         const data = await response.json();
         if (response.ok) {
             // alert(data.message); // "Login successful."
-
             // Save tokens to localStorage
-            localStorage.setItem('access_token', data.tokens.access);
-            localStorage.setItem('refresh_token', data.tokens.refresh);
-
+            // localStorage.setItem('access_token', data.tokens.access);
+            // localStorage.setItem('refresh_token', data.tokens.refresh);
+            Cookies.set('access_token', data.tokens.access, { secure: true, sameSite: 'Strict' });
+            Cookies.set('refresh_token', data.tokens.refresh, { secure: true, sameSite: 'Strict' });
             // Optionally, save user details to state or localStorage
-            localStorage.setItem('user', JSON.stringify(data.user));
+            // localStorage.setItem('user', JSON.stringify(data.user));
+            Cookies.set('user', JSON.stringify(data.user));
+
 
             console.log("Tokens saved:", data.tokens);
             console.log("User details:", data.user);
@@ -55,40 +59,24 @@ const handleChange = (e) => {
     });
 };
 
-const accessToken = localStorage.getItem('access_token');
-
-fetch('http://127.0.0.1:8000/login/', {
-    method: 'GET',
-    headers: {
-        'Authorization': `Bearer ${accessToken}`,
-    },
-})
-.then(response => response.json())
-.then(data => {
-    console.log("Protected data:", data);
-})
-.catch(error => {
-    console.error("Error fetching protected data:", error);
-});
-
 
 const refreshToken = localStorage.getItem('refresh_token');
 
-fetch('http://127.0.0.1:8000/token/refresh/', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ refresh: refreshToken }),
-})
-.then(response => response.json())
-.then(data => {
-    localStorage.setItem('access_token', data.access); // Save the new access token
-    console.log("New access token:", data.access);
-})
-.catch(error => {
-    console.error("Error refreshing token:", error);
-});
+// fetch('http://127.0.0.1:8000/token/refresh/', {
+//     method: 'POST',
+//     headers: {
+//         'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({ refresh: refreshToken }),
+// })
+// .then(response => response.json())
+// .then(data => {
+//     localStorage.setItem('access_token', data.access); // Save the new access token
+//     console.log("New access token:", data.access);
+// })
+// .catch(error => {
+//     console.error("Error refreshing token:", error);
+// });
 
 
 const handleLogout = () => {

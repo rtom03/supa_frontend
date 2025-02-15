@@ -8,6 +8,7 @@ import axios from "axios";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
+import Link from "next/link";
 
 const Entertainment = () => {
   const data = [
@@ -61,11 +62,18 @@ const Entertainment = () => {
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
+        const getCookie = (name) => {
+          const cookies = document.cookie.split('; ');
+          const cookie = cookies.find(row => row.startsWith(name + '='));
+          return cookie ? cookie.split('=')[1] : null;
+      };
+      
+      const accessToken = getCookie('access_token'); 
         const response = await fetch('http://127.0.0.1:8000/createroom/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('access_token')}`, // Add token for authentication
+            'Authorization': `Bearer ${accessToken}`, // Add token for authentication
           },
           body: JSON.stringify(formData),
         });
@@ -144,7 +152,9 @@ const Entertainment = () => {
                   <AvatarFallback>{item.host.username.charAt(0).toUpperCase()}</AvatarFallback>
 
                 </Avatar>
+                <Link href={`/room/${item.id}`}>
                 <h2 className="text-lg font-semibold text-gray-900">{item.name}</h2>
+                </Link>
               </div>
 
               {/* Description */}
@@ -159,19 +169,7 @@ const Entertainment = () => {
     hour12: true,
   })}
 </p>
-
-
-              {/* Image */}
-               {/* <div className="mt-3">
-                <Image
-                  src={ban}
-                  alt={'img'}
-                  className="w-full h-40 object-cover rounded-lg"
-                />
-              </div>  */}
-
-              {/* Divider */}
-              <hr className="my-3 border-gray-300" />
+      <hr className="my-3 border-gray-300" />
 
               {/* Actions (Optional - Like, Comment, Share) */}
               <div className="flex justify-between text-gray-500 text-sm">
