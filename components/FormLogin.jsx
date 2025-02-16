@@ -6,6 +6,8 @@ import Link from 'next/link';
 import Cookies from "js-cookie"; // Install with `npm install js-cookie`
 import { Loader } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { useToast } from '@/hooks/use-toast';
+import { ToastAction } from './ui/toast';
 
 
 
@@ -18,6 +20,8 @@ const FormLogin = () => {
 
 const [loading,setLoading] = useState(false)
 const router = useRouter()
+const { toast } = useToast()
+
 
 
 const handleSubmit = async (e) => {
@@ -52,10 +56,15 @@ const handleSubmit = async (e) => {
             router.push('/');
              // Example: Redirect to dashboard
         } else {
-            alert(`Error: ${data.error}`);
+            toast({
+                variant: "destructive",
+                title: "Uh oh! Something went wrong.",
+                description: "Password or username is incorrect.",
+                action: <ToastAction altText="Try again">Try again</ToastAction>,
+              })
         }
     } catch (error) {
-        alert('An error occurred. Please try again.');
+        toast('password or username incorrect.');
     }finally{
         setLoading(false)
     }

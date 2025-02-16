@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { Loader } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import { ToastAction } from './ui/toast';
+import { useToast } from '@/hooks/use-toast';
 
 
 const Form = () => {
@@ -18,11 +20,13 @@ const Form = () => {
 
     const [isLoading,setIsLoading] = useState(false)
     const router = useRouter()
+    const { toast } = useToast()
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        await new Promise((resolve) => setTimeout(resolve, 2000))
+        await new Promise((resolve) => setTimeout(resolve, 1000))
         setIsLoading(true)
         const response = await fetch('https://supa-arzf.onrender.com/register/', {
             method: 'POST',
@@ -37,7 +41,12 @@ const Form = () => {
             router.push('/sign-in');
 
         } else {
-            toast(`Error: ${JSON.stringify(data)}`);
+             toast({
+                    variant: "destructive",
+                    title: "Uh oh! Something went wrong.",
+                    description: "Password or username is incorrect.",
+                    action: <ToastAction altText="Try again">Try again</ToastAction>,
+                    })
 
         }
     } catch (error) {

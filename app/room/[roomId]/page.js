@@ -1,16 +1,39 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, CSSProperties } from "react";
 import axios from "axios";
 import { useParams } from "next/navigation"; // ✅ Correct way to get dynamic route params in App Router
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+import Link from "next/link";
+import ClipLoader from "react-spinners/ClipLoader";
+import { FadeLoader, HashLoader, PuffLoader, SyncLoader } from "react-spinners";
+
+
+
 export default function RoomPage() {
+
+  const override = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "yellow",
+  };
+
   const { roomId } = useParams(); // ✅ Get roomId from URL
   const [room, setRoom] = useState(null);
   const [messages, setMessages] = useState([]);  
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
+  let [color, setColor] = useState("#ffffff");
+
 
   useEffect(() => {
     if (!roomId) return; // Prevent fetching before roomId is available
@@ -80,12 +103,42 @@ export default function RoomPage() {
   };
 
 
-  if (loading) return <p>Loading room...</p>;
+  if (loading) return <div className="flex justify-center items-center h-screen">
+      <PuffLoader
+        // color={color}
+        loading={loading}
+        cssOverride={override}
+        size={150}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+        color="yellow"
+      />
+  </div>;
   if (!room) return <p>Room not found.</p>;
   return (
     <div className="grid grid-cols-4 mt-16 gap-6 px-6">
       {/* Chat Section */}
-      <div className="col-span-3 bg-white p-6 rounded-2xl shadow-xl border border-gray-200 relative flex flex-col h-[85vh]">
+      <div className="col-span-3">
+      <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink>
+            <Link href="/">Home</Link>
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink>
+            <Link href="/entertainments">Entertainments</Link>
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          {/* <BreadcrumbPage>Breadcrumb</BreadcrumbPage> */}
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+    <div className="bg-white p-6 rounded-2xl shadow-xl border border-gray-200 relative flex flex-col h-[85vh] mt-3">
         {/* Room Info */}
         <div className="border-b pb-4 mb-4">
           <h1 className="text-3xl font-bold text-gray-800">{room.name}</h1>
@@ -121,6 +174,7 @@ export default function RoomPage() {
             Send
           </button>
         </div>
+      </div>
       </div>
 
       {/* Recent Activities Section */}

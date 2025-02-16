@@ -12,6 +12,15 @@ import Link from "next/link";
 import { Loader } from "lucide-react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+ 
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
 
 const Entertainment = () => {
 
@@ -22,6 +31,7 @@ const Entertainment = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [loading,setLoading] = useState(false)
   const router = useRouter()
+
   const fetchData = async () => {
     try {
       const response = await axios.get(`https://supa-arzf.onrender.com/?q=${searchQuery}`);
@@ -100,8 +110,28 @@ const Entertainment = () => {
   return (
     <div className="grid grid-cols-4 mt-16 gap-6 px-6">
       {/* Main Content (Bets Section) */}
-      <div className="col-span-3 bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+      <div className="col-span-3 p-2">
         {/* Header */}
+        <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink>
+            <Link href="/">Home</Link>
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink>
+            {/* <Link href="/components">Components</Link> */}
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          {/* <BreadcrumbPage>Breadcrumb</BreadcrumbPage> */}
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+    <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200 mt-3">
         <div className="flex justify-between items-center pb-4 border-b">
           <h1 className="text-xl font-bold text-gray-800">Entertainments</h1>
             <Popover>
@@ -173,6 +203,7 @@ const Entertainment = () => {
             </div>
           ))}
         </div>
+      </div>
       </div>
 
       {/* Sidebar (Recent Activities) */}
