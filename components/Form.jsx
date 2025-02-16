@@ -24,7 +24,7 @@ const Form = () => {
     try {
         await new Promise((resolve) => setTimeout(resolve, 2000))
         setIsLoading(true)
-        const response = await fetch('http://127.0.0.1:8000/register/', {
+        const response = await fetch('https://supa-arzf.onrender.com/register/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

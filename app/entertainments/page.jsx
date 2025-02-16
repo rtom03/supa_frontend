@@ -24,7 +24,7 @@ const Entertainment = () => {
   const router = useRouter()
   const fetchData = async () => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/?q=${searchQuery}`);
+      const response = await axios.get(`https://supa-arzf.onrender.com/?q=${searchQuery}`);
       setRooms(response.data.rooms);
       setRoomCount(response.data.room_count);
       setRoomMessages(response.data.room_message);
@@ -58,8 +58,9 @@ const Entertainment = () => {
           return cookie ? cookie.split('=')[1] : null;
       };
       
+      // 'http://127.0.0.1:8000
       const accessToken = getCookie('access_token'); 
-        const response = await fetch('http://127.0.0.1:8000/createroom/', {
+        const response = await fetch('https://supa-arzf.onrender.com/createroom/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

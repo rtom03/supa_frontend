@@ -38,7 +38,7 @@ const Navbar = () => {
     }
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/protected-endpoint/', {
+      const response = await fetch('https://supa-arzf.onrender.com/protected-endpoint/', {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${accessToken}`,
