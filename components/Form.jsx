@@ -3,6 +3,9 @@ import { Button } from './ui/button'
 import { Label } from './ui/label'
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { Loader } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 
 const Form = () => {
@@ -13,10 +16,15 @@ const Form = () => {
         comfirm_password: ''
     });
 
+    const [isLoading,setIsLoading] = useState(false)
+    const router = useRouter()
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const response = await fetch('https://supa-arzf.onrender.com/register/', {
+        await new Promise((resolve) => setTimeout(resolve, 2000))
+        setIsLoading(true)
+        const response = await fetch('http://127.0.0.1:8000/register/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -26,13 +34,17 @@ const Form = () => {
         const data = await response.json();
         if (response.ok) {
             // alert(data.message); // "User registered successfully."
-            window.location.href = '/sign-in';
+            router.push('/sign-in');
 
         } else {
-            alert(`Error: ${JSON.stringify(data)}`);
+            toast(`Error: ${JSON.stringify(data)}`);
+
         }
     } catch (error) {
-        alert('An error occurred. Please try again.');
+        console.log('An error occurred. Please try again.',error);
+
+    }finally{
+        setIsLoading(false)
     }
 };
 
@@ -43,6 +55,8 @@ const handleChange = (e) => {
       [e.target.name]: e.target.value
   });
 };
+
+const isDisabled = !formData.username || !formData.comfirm_password;
 
 
   return (
@@ -91,7 +105,9 @@ const handleChange = (e) => {
                     required
                     />
         </div>
-                     <Button  variant="yellow" className=" hover:bg-yellow-300 text-white w-[100%] mt-2">Register</Button>
+                     <Button  variant="yellow" className=" hover:bg-yellow-300 text-white w-[100%] mt-2" disabled={isDisabled}>
+                        {isLoading ? <Loader className="animate-spin" size={20} /> : "Register"}
+                     </Button>
                      <strong  className='flex justify-center items-center'>Already have an account?<Link href={'/sign-in'}>Login</Link></strong>
 
              </form>

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "next/navigation"; // ✅ Correct way to get dynamic route params in App Router
 import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 
 export default function RoomPage() {
   const { roomId } = useParams(); // ✅ Get roomId from URL
@@ -26,17 +27,20 @@ export default function RoomPage() {
       const accessToken = getCookie('access_token'); 
       // console.log("cookie got the token",accessToken)
 
-        const response = await axios.get(`https://supa-arzf.onrender.com/room/${roomId}/`, {
+        const response = await axios.get(`http://127.0.0.1:8000/room/${roomId}/`, {
           headers: {
             Authorization: `Bearer ${accessToken}`, // Ensure authentication
           },
           withCredentials: true, 
         });
         setRoom(response.data);
+        console.log(response.data)
         setMessages(response.data.messages || []);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching room data:", error);
+        toast(error)
+
         setLoading(false);
       }
     };
@@ -56,7 +60,7 @@ export default function RoomPage() {
     
     const accessToken = getCookie('access_token'); 
       const response = await axios.post(
-        `https://supa-arzf.onrender.com/room/${roomId}/`,
+        `http://127.0.0.1:8000/room/${roomId}/`,
         { body: message },
         {
           headers: {

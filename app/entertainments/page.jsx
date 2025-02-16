@@ -9,38 +9,26 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { Loader } from "lucide-react";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const Entertainment = () => {
-  const data = [
-    {
-      name: "Room A",
-      description: "A cozy room with modern decor.",
-      image: ban,
-    },
-    {
-      name: "Room B",
-      description: "A spacious room with a great view.",
-      image: ban,
-    },
-    {
-      name: "Room C",
-      description: "A minimalist room with essential amenities.",
-      image: ban,
-    },
-  ];
+
 
   const [rooms, setRooms] = useState([]);
   const [roomCount, setRoomCount] = useState(0);
   const [roomMessages, setRoomMessages] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-
+  const [loading,setLoading] = useState(false)
+  const router = useRouter()
   const fetchData = async () => {
     try {
-      const response = await axios.get(`https://supa-arzf.onrender.com/?q=${searchQuery}`);
+      const response = await axios.get(`http://127.0.0.1:8000/?q=${searchQuery}`);
       setRooms(response.data.rooms);
       setRoomCount(response.data.room_count);
       setRoomMessages(response.data.room_message);
-      console.log(response.data.rooms)
+      // console.log(response.data.rooms)
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -62,6 +50,8 @@ const Entertainment = () => {
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
+        await new Promise((resolve) => setTimeout(resolve,2000))
+        setLoading(true)
         const getCookie = (name) => {
           const cookies = document.cookie.split('; ');
           const cookie = cookies.find(row => row.startsWith(name + '='));
@@ -69,7 +59,7 @@ const Entertainment = () => {
       };
       
       const accessToken = getCookie('access_token'); 
-        const response = await fetch('https://supa-arzf.onrender.com/createroom/', {
+        const response = await fetch('http://127.0.0.1:8000/createroom/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -81,15 +71,19 @@ const Entertainment = () => {
         const data = await response.json();
   
         if (response.ok) {
+          toast("Your room has been created successfully")
+
           setMessage(data.message);
           setRoom(data.room); // Save the created room data  
-          window.location.href = '/entertainments';
+          router.push('/');
 
         } else {
           setMessage(`Error: ${data.message}`);
         }
       } catch (error) {
         setMessage('An error occurred. Please try again.');
+      }finally{
+        setLoading(false)
       }
     };
   
@@ -109,15 +103,11 @@ const Entertainment = () => {
         {/* Header */}
         <div className="flex justify-between items-center pb-4 border-b">
           <h1 className="text-xl font-bold text-gray-800">Entertainments</h1>
-          {/* <Button className="bg-yellow-500 hover:bg-yellow-400 text-white font-semibold px-4 py-2 rounded-lg shadow-md">
-            Create Bet
-          </Button> */}
             <Popover>
             <Button variant='yellow'  className="mt-11 hover:bg-yellow-200 text-white">
             <PopoverTrigger>Create Room</PopoverTrigger>
             </Button>
             <PopoverContent>
-            <form onSubmit={handleSubmit}>
           <label>Name</label>
           <Input
             type="text"
@@ -133,8 +123,10 @@ const Entertainment = () => {
             onChange={handleChange}
             required
           />
-        <Button type="submit" variant='yellow'  className="hover:bg-yellow-200 text-white w-[100%] mt-2">Create Room</Button>
-      </form>
+        <Button type="submit" variant='yellow'  className="hover:bg-yellow-200 text-white w-[100%] mt-2" onClick={handleSubmit}>
+        {loading ? <Loader className="animate-spin" size={20} /> : "Create room"}
+
+        </Button>
             </PopoverContent>
           </Popover>
         </div>
@@ -149,7 +141,7 @@ const Entertainment = () => {
               <div className="flex items-center gap-3">
                 <Avatar className="w-12 h-12 bg-slate-500">
                   {/* <AvatarImage src={item.image.src} className="rounded-full" /> */}
-                  <AvatarFallback>{item.host.username.charAt(0).toUpperCase()}</AvatarFallback>
+                  {/* <AvatarFallback>{item.host.username.charAt(0).toUpperCase()}</AvatarFallback> */}
 
                 </Avatar>
                 <Link href={`/room/${item.id}`}>
@@ -160,15 +152,15 @@ const Entertainment = () => {
               {/* Description */}
               <p className="mt-2 text-gray-700">{item.description}</p>
               <p className="mt-2 text-gray-700">
-  {new Date(item.updated).toLocaleString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-  })}
-</p>
+              {new Date(item.updated).toLocaleString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: true,
+              })}
+            </p>
       <hr className="my-3 border-gray-300" />
 
               {/* Actions (Optional - Like, Comment, Share) */}
