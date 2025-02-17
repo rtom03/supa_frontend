@@ -37,20 +37,20 @@ const Entertainment = () => {
 
   const [accessToken, setAccessToken] = useState(null);
 
-  useEffect(() => {
-    // This code only runs in the browser
-    const getCookie = (name) => {
-      if (typeof document !== 'undefined') {
-        const cookies = document.cookie.split('; ');
-        const cookie = cookies.find((row) => row.startsWith(name + '='));
-        return cookie ? cookie.split('=')[1] : null;
-      }
-      return null;
-    };
+  // useEffect(() => {
+  //   // This code only runs in the browser
+  //   const getCookie = (name) => {
+  //     if (typeof document !== 'undefined') {
+  //       const cookies = document.cookie.split('; ');
+  //       const cookie = cookies.find((row) => row.startsWith(name + '='));
+  //       return cookie ? cookie.split('=')[1] : null;
+  //     }
+  //     return null;
+  //   };
 
-    const token = getCookie('access_token');
-    setAccessToken(token);
-  }, []);
+  //   const token = getCookie('access_token');
+  //   setAccessToken(token);
+  // }, []);
 
   const fetchData = async () => {
     try {
