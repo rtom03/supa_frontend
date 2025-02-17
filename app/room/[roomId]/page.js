@@ -61,12 +61,31 @@ export default function RoomPage() {
     return cookie ? cookie.split('=')[1] : null;
 };
 
-const accessToken = getCookie('access_token'); 
-let user = getCookie('user')
+const [accessToken, setAccessToken] = useState(null);
+const [username, setUsername] = useState(null);
+
+useEffect(() => {
+  const token = getCookie("access_token");
+  const user = getCookie("user");
+
+  if (user) {
+    try {
+      let loggedUser = JSON.parse(decodeURIComponent(user));
+      setUsername(loggedUser.username);
+    } catch (error) {
+      console.error("Error parsing user cookie:", error);
+    }
+  }
+
+  setAccessToken(token);
+}, []);
+
+// const accessToken = getCookie('access_token'); 
+// let user = getCookie('user')
 
 
-      let loggedUser = JSON.parse(decodeURIComponent(user)); 
-      const username = loggedUser.username; // Output: "mac"
+//       let loggedUser = JSON.parse(decodeURIComponent(user)); 
+//       const username = loggedUser.username; // Output: "mac"
    
 
 
