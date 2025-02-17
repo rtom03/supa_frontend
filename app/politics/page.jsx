@@ -1,3 +1,4 @@
+"use client"; 
 import dynamic from "next/dynamic";
 
 const Politics = dynamic(() => import("../path/to/Politics"), {
