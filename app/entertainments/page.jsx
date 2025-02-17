@@ -1,9 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import ban from "../../public/banner.jpeg"; // Importing local image
 import axios from "axios";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Textarea } from "@/components/ui/textarea";
@@ -44,13 +42,17 @@ const Entertainment = () => {
     }
   };
 
-    const getCookie = (name) => {
-          const cookies = document.cookie.split('; ');
-          const cookie = cookies.find(row => row.startsWith(name + '='));
-          return cookie ? cookie.split('=')[1] : null;
-      };
-      const accessToken = getCookie('access_token'); 
-
+  const getCookie = (name) => {
+    if (typeof document !== "undefined") {
+      const cookies = document.cookie.split("; ");
+      const cookie = cookies.find((row) => row.startsWith(name + "="));
+      return cookie ? cookie.split("=")[1] : null;
+    }
+    return null;
+  };
+  
+  const accessToken = getCookie("access_token");
+  
 
 
   useEffect(() => {
