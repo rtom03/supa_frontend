@@ -19,6 +19,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
+import { getCookie } from "cookies-next";
 
 const Entertainment = () => {
 
@@ -29,6 +30,8 @@ const Entertainment = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [loading,setLoading] = useState(false)
   const router = useRouter()
+  const accessToken = getCookie("access_token");
+
 
   const fetchData = async () => {
     try {
@@ -36,22 +39,25 @@ const Entertainment = () => {
       setRooms(response.data.rooms);
       setRoomCount(response.data.room_count);
       setRoomMessages(response.data.room_message);
+      // console.log(accessToken)
+
       // console.log(response.data.rooms)
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
-  const getCookie = (name) => {
-    if (typeof document !== "undefined") {
-      const cookies = document.cookie.split("; ");
-      const cookie = cookies.find((row) => row.startsWith(name + "="));
-      return cookie ? cookie.split("=")[1] : null;
-    }
-    return null;
-  };
+  // const getCookie = (name) => {
+  //   if (typeof document !== "undefined") {
+  //     const cookies = document.cookie.split("; ");
+  //     const cookie = cookies.find((row) => row.startsWith(name + "="));
+  //     return cookie ? cookie.split("=")[1] : null;
+  //   }
+  //   return null;
+  // };
   
-  const accessToken = getCookie("access_token");
+  // const accessToken = getCookie("access_token");
+
   
 
 
@@ -88,7 +94,6 @@ const Entertainment = () => {
         });
   
         const data = await response.json();
-        console.log(accessToken)
   
         if (response.ok) {
           toast("Your room has been created successfully")
