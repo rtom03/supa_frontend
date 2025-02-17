@@ -1,18 +1,8 @@
-// import dynamic from "next/dynamic";
+import dynamic from "next/dynamic";
 
-// const Entertainments = dynamic(() => import("../path/to/Entertainment"), {
-//   ssr: false,
-// });
+const Entertainments = dynamic(() => import("../../components/Entertainment"), {
+  ssr: false,
+});
 
-// export default Entertainments;
-import React from 'react'
+export default Entertainments;
 
-const Entertainments = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
-
-export default Entertainments

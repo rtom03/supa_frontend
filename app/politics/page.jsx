@@ -1,11 +1,7 @@
-import React from 'react'
+import dynamic from "next/dynamic";
 
-const Politics = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+const Politics = dynamic(() => import("../path/to/Politics"), {
+  ssr: false,
+});
 
-export default Politics
+export default Politics;
