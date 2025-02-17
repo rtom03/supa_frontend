@@ -1,7 +1,7 @@
 "use client"; 
 import dynamic from "next/dynamic";
 
-const Politics = dynamic(() => import("../path/to/Politics"), {
+const Politics = dynamic(() => import("@/components/Politics"), {
   ssr: false,
 });
 
