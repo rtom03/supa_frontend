@@ -37,20 +37,20 @@ const Entertainment = () => {
 
   const [accessToken, setAccessToken] = useState(null);
 
-  // useEffect(() => {
-  //   // This code only runs in the browser
-  //   const getCookie = (name) => {
-  //     if (typeof document !== 'undefined') {
-  //       const cookies = document.cookie.split('; ');
-  //       const cookie = cookies.find((row) => row.startsWith(name + '='));
-  //       return cookie ? cookie.split('=')[1] : null;
-  //     }
-  //     return null;
-  //   };
+  useEffect(() => {
+    // This code only runs in the browser
+    const getCookie = (name) => {
+      if (typeof document !== 'undefined') {
+        const cookies = document.cookie.split('; ');
+        const cookie = cookies.find((row) => row.startsWith(name + '='));
+        return cookie ? cookie.split('=')[1] : null;
+      }
+      return null;
+    };
 
-  //   const token = getCookie('access_token');
-  //   setAccessToken(token);
-  // }, []);
+    const token = getCookie('access_token');
+    setAccessToken(token);
+  }, []);
 
   const fetchData = async () => {
     try {
@@ -133,7 +133,7 @@ const Entertainment = () => {
         <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink>
+          <BreadcrumbLink asChild>
             <Link href="/">Home</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
@@ -156,9 +156,7 @@ const Entertainment = () => {
 </h1>
 
   <Popover>
-    <Button variant="yellow" className="hover:bg-yellow-200 text-white w-full md:w-auto">
-      <PopoverTrigger>Create Room</PopoverTrigger>
-    </Button>
+      <PopoverTrigger  className="hover:bg-yellow-200 text-white w-full md:w-auto">Create Room</PopoverTrigger>
     <PopoverContent>
       <label>Name</label>
       <Input
