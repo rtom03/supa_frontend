@@ -29,9 +29,28 @@ const Entertainment = () => {
   const [roomMessages, setRoomMessages] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [loading,setLoading] = useState(false)
+  const [message, setMessage] = useState('');
+  const [room, setRoom] = useState(null);
   const router = useRouter()
-  const accessToken = getCookie("access_token");
+  // const accessToken = getCookie("access_token");
 
+
+  const [accessToken, setAccessToken] = useState(null);
+
+  useEffect(() => {
+    // This code only runs in the browser
+    const getCookie = (name) => {
+      if (typeof document !== 'undefined') {
+        const cookies = document.cookie.split('; ');
+        const cookie = cookies.find((row) => row.startsWith(name + '='));
+        return cookie ? cookie.split('=')[1] : null;
+      }
+      return null;
+    };
+
+    const token = getCookie('access_token');
+    setAccessToken(token);
+  }, []);
 
   const fetchData = async () => {
     try {
@@ -47,20 +66,6 @@ const Entertainment = () => {
     }
   };
 
-  // const getCookie = (name) => {
-  //   if (typeof document !== "undefined") {
-  //     const cookies = document.cookie.split("; ");
-  //     const cookie = cookies.find((row) => row.startsWith(name + "="));
-  //     return cookie ? cookie.split("=")[1] : null;
-  //   }
-  //   return null;
-  // };
-  
-  // const accessToken = getCookie("access_token");
-
-  
-
-
   useEffect(() => {
     fetchData();
   }, [searchQuery]);
@@ -71,8 +76,7 @@ const Entertainment = () => {
       description: '',
     });
 
-    const [message, setMessage] = useState('');
-    const [room, setRoom] = useState(null);
+  
 
   // const accessToken = getCookie('access_token'); 
 
