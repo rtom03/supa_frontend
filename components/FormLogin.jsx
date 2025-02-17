@@ -79,36 +79,79 @@ const handleChange = (e) => {
 
 const isDisabled = !formData.username || !formData.password;
   return (
-    <div className=' flex justify-center items-center mt-24'> 
+    // <div className=' flex justify-center items-center mt-24'> 
 
-        <div className='flex flex-col g-3 p-7 bg-yellow-500 w-[400px] text-white gap-3 rounded-sm'>
-        <h1 className='text-red-600'>Authentication</h1>
-                <div>
-                    <Label>Username</Label>
-                    <Input 
-                    type="text"
-                    name="username"
-                    value={formData.username}
-                    onChange={handleChange}
-                    required/>
-                <Label>Password</Label>
-                </div>
-                <div>
-                    <Input
-                    type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                    /> 
-                </div>
-                <Button variant='yellow' className="hover:bg-yellow-300 text-white w-[100%] mt-2" onClick={handleSubmit} disabled={isDisabled}>
-                {loading ? <Loader className="animate-spin" size={20} /> : "Login"}
+    //     <div className='flex flex-col g-3 p-7 bg-yellow-500 w-[400px] text-white gap-3 rounded-sm'>
+    //     <h1 className='text-red-600'>Authentication</h1>
+    //             <div>
+    //                 <Label>Username</Label>
+    //                 <Input 
+    //                 type="text"
+    //                 name="username"
+    //                 value={formData.username}
+    //                 onChange={handleChange}
+    //                 required/>
+    //             <Label>Password</Label>
+    //             </div>
+    //             <div>
+    //                 <Input
+    //                 type="password"
+    //                 name="password"
+    //                 value={formData.password}
+    //                 onChange={handleChange}
+    //                 required
+    //                 /> 
+    //             </div>
+    //             <Button variant='yellow' className="hover:bg-yellow-300 text-white w-[100%] mt-2" onClick={handleSubmit} disabled={isDisabled}>
+    //             {loading ? <Loader className="animate-spin" size={20} /> : "Login"}
 
-                </Button>
-                <strong className='flex justify-center items-center'>New here?<Link href={'/sign-up'}>sign up</Link></strong>
-        </div>
+    //             </Button>
+    //             <strong className='flex justify-center items-center'>New here?<Link href={'/sign-up'}>sign up</Link></strong>
+    //     </div>
+    // </div>
+    <div className="flex justify-center items-center min-h-screen p-4">
+  <div className="flex flex-col gap-3 p-6 bg-yellow-500 w-full max-w-sm text-white rounded-md shadow-lg">
+    <h1 className="text-red-600 text-center text-lg font-semibold">Authentication</h1>
+    
+    <div className="flex flex-col gap-2">
+      <Label>Username</Label>
+      <Input 
+        type="text"
+        name="username"
+        value={formData.username}
+        onChange={handleChange}
+        required
+        className="w-full p-2 rounded-md"
+      />
     </div>
+
+    <div className="flex flex-col gap-2">
+      <Label>Password</Label>
+      <Input
+        type="password"
+        name="password"
+        value={formData.password}
+        onChange={handleChange}
+        required
+        className="w-full p-2 rounded-md"
+      />
+    </div>
+
+    <Button 
+      variant="yellow" 
+      className="hover:bg-yellow-300 text-white w-full mt-2 py-2"
+      onClick={handleSubmit} 
+      disabled={isDisabled}
+    >
+      {loading ? <Loader className="animate-spin" size={20} /> : "Login"}
+    </Button>
+
+    <strong className="flex justify-center items-center gap-1 text-sm">
+      New here? <Link href={'/sign-up'} className="underline">Sign up</Link>
+    </strong>
+  </div>
+</div>
+
   )
 }
 

@@ -18,7 +18,7 @@ export default async function DashboardLayout({ children, params }) {
                       </main>
                 </SidebarProvider>
                 <div className=''>
-                <Rightbar/>
+                {/* <Rightbar/> */}
                 </div>
             </div> 
          </div>

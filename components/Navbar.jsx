@@ -93,34 +93,69 @@ const Navbar = () => {
   }
 
   return (
-    <div className="fixed top-0 left-0 w-full bg-yellow-400 p-3 flex justify-evenly items-center shadow-md z-50">
-      <div className="flex items-center gap-3">
-        <Link href={'/'}>
-          <h1>SUPABETOS</h1>
-        </Link>
-        <NavigationMenuDemo />
-      </div>
-      <div className="flex items-center gap-2 ml-48">
-        {isAuthenticated ? (
-          <>
-          <p>Hello {user.user.username}</p>
-          <Button onClick={handleLogout} variant='yellow' className="bg-yellow-200">
-          {isLoading ? <Loader className="animate-spin" size={20} /> : "Logout"}
+    // <div className="fixed top-0 left-0 w-full bg-yellow-400 p-3 flex justify-evenly items-center shadow-md z-50">
+    //   <div className="flex items-center gap-3">
+    //     <Link href={'/'}>
+    //       <h1>SUPABETOS</h1>
+    //     </Link>
+    //     <div className="hidden md:block">
+    //     <NavigationMenuDemo />
+    //     </div>
+    //   </div>
+    //   <div className="flex items-center gap-2 ml-48">
+    //     {isAuthenticated ? (
+    //       <>
+    //       <p>Hello {user.user.username}</p>
+    //       <Button onClick={handleLogout} variant='yellow' className="bg-yellow-200">
+    //       {isLoading ? <Loader className="animate-spin" size={20} /> : "Logout"}
 
-          </Button>
-        </>
-        ) : (
-          <>
-            <Link href={'/sign-up'}>
-              <Button>Register</Button>
-            </Link>
-            <Link href={'/sign-in'}>
-              <Button>Login</Button>
-            </Link>
-          </>
-        )}
-      </div>
-    </div>
+    //       </Button>
+    //     </>
+    //     ) : (
+    //       <>
+    //         <Link href={'/sign-up'}>
+    //           <Button>Register</Button>
+    //         </Link>
+    //         <Link href={'/sign-in'}>
+    //           <Button>Login</Button>
+    //         </Link>
+    //       </>
+    //     )}
+    //   </div>
+    // </div>
+    <div className="fixed top-0 left-0 w-full bg-yellow-400 p-3 flex justify-between items-center shadow-md z-50">
+  {/* Logo */}
+  <Link href={'/'}>
+    <h1 className="text-lg font-bold">SUPABETOS</h1>
+  </Link>
+
+  {/* Navigation Menu (Visible on md and larger) */}
+  <div className="hidden md:block">
+    <NavigationMenuDemo />
+  </div>
+
+  {/* Auth Buttons (Mobile-friendly) */}
+  <div className="flex items-center gap-2">
+    {isAuthenticated ? (
+      <>
+        <p className="text-sm">Hello {user.user.username}</p>
+        <Button onClick={handleLogout} variant="yellow" className="bg-yellow-200 text-sm">
+          {isLoading ? <Loader className="animate-spin" size={20} /> : "Logout"}
+        </Button>
+      </>
+    ) : (
+      <>
+        <Link href={'/sign-up'}>
+          <Button className="text-sm px-3 py-2">Register</Button>
+        </Link>
+        <Link href={'/sign-in'}>
+          <Button className="text-sm px-3 py-2">Login</Button>
+        </Link>
+      </>
+    )}
+  </div>
+</div>
+
   );
 };
 
