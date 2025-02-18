@@ -155,7 +155,8 @@ const Entertainment = () => {
 </h1>
 
   <Popover>
-      <PopoverTrigger  className="hover:bg-yellow-200 text-white w-full md:w-auto">Create Room</PopoverTrigger>
+      <PopoverTrigger asChild>
+        <Button variant={'yellow'} className="bg-yellow-400 hover:bg-yellow-300 text-white w-full md:w-auto">Create Room</Button></PopoverTrigger>
     <PopoverContent>
       <label>Name</label>
       <Input
