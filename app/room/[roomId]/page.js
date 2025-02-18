@@ -33,6 +33,8 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import moment from "moment";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { getCookie } from "cookies-next";
+
 
 
 
@@ -53,45 +55,20 @@ export default function RoomPage() {
   let [color, setColor] = useState("#ffffff");
   const { toast } = useToast()
   const router = useRouter()
-
-
-  const getCookie = (name) => {
-    const cookies = document.cookie.split('; ');
-    const cookie = cookies.find(row => row.startsWith(name + '='));
-    return cookie ? cookie.split('=')[1] : null;
-};
-
-const [accessToken, setAccessToken] = useState(null);
-const [username, setUsername] = useState(null);
-
-useEffect(() => {
-  const token = getCookie("access_token");
-  const user = getCookie("user");
-
-  if (user) {
-    try {
-      let loggedUser = JSON.parse(decodeURIComponent(user));
-      setUsername(loggedUser.username);
-    } catch (error) {
-      console.error("Error parsing user cookie:", error);
-    }
-  }
-
-  setAccessToken(token);
-}, []);
-
-// const accessToken = getCookie('access_token'); 
-// let user = getCookie('user')
-
-
-//       let loggedUser = JSON.parse(decodeURIComponent(user)); 
-//       const username = loggedUser.username; // Output: "mac"
-   
-
-
+  const user = getCookie('user')
 
   useEffect(() => {
     if (!roomId) return; // Prevent fetching before roomId is available
+
+    const getCookie = (name) => {
+      if (typeof document !== 'undefined') {
+        const cookies = document.cookie.split('; ');
+        const cookie = cookies.find((row) => row.startsWith(name + '='));
+        return cookie ? cookie.split('=')[1] : null;
+      }
+      return null;
+    };
+    const accessToken = getCookie('access_token')
     
     const fetchRoom = async () => {
       try {
@@ -104,21 +81,19 @@ useEffect(() => {
       // const accessToken = getCookie('access_token'); 
       // console.log("cookie got the token",accessToken)
 
-        const response = await axios.get(`https://supa-arzf.onrender.com/room/${roomId}/`, {
+        const response = await axios.get(`http://127.0.0.1:8000/room/${roomId}/`, {
           headers: {
             Authorization: `Bearer ${accessToken}`, // Ensure authentication
           },
           withCredentials: true, 
         });
         setRoom(response.data);
-        console.log(response.data)
-        console.log(username)
+        // console.log(response.data)
+        console.log(user)
         setMessages(response.data.messages || []);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching room data:", error);
-        toast(error)
-
         setLoading(false);
       }
     };
@@ -142,6 +117,7 @@ useEffect(() => {
       );
 
       setMessages([...messages, response.data.data]);
+      console.log(accessToken)
     // Add new message to list
       setMessage(""); // Clear input field
       console.log(response.data)
@@ -149,8 +125,6 @@ useEffect(() => {
       console.error("Error posting message:", error);
     }
   };
-
-
 
   const handleDelete = async ()=>{
          try{
@@ -216,14 +190,16 @@ useEffect(() => {
       <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink>
-            <Link href="/">Home</Link>
+          <BreadcrumbLink asChild>
+          <div>
+          <Link href="/">Home</Link>
+          </div>
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbLink>
-            <Link href="/entertainments">Entertainments</Link>
+          <BreadcrumbLink asChild>
+          <Link href="/entertainments">Entertainments</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
@@ -233,7 +209,8 @@ useEffect(() => {
       </BreadcrumbList>
     </Breadcrumb>
     {/* {room.host == room.host && <Button>Delete Room</Button>} */}
-   {username === room.host.username && <AlertDialog>
+   {user.username === room.host.username &&
+    <AlertDialog>
   <AlertDialogTrigger>
     <Button variant={'destructive'} className="w-full sm:w-auto">Delete Room</Button></AlertDialogTrigger>
   <AlertDialogContent>

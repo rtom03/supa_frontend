@@ -1,6 +1,3 @@
-
-
-
 'use client';
 import React, { useEffect, useState } from 'react';
 import { NavigationMenuDemo } from '@/components/Navigation';
@@ -8,6 +5,7 @@ import Link from 'next/link';
 import { Button } from './ui/button';
 import { Loader } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { PuffLoader } from 'react-spinners';
 
 const Navbar = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false); // State to track authentication status
@@ -15,6 +13,12 @@ const Navbar = () => {
   const [user,setUser] = useState('')
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter()
+  
+  const override = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "yellow",
+  };
 
 
   // Function to fetch protected data and check authentication
@@ -27,9 +31,7 @@ const Navbar = () => {
       return cookie ? cookie.split('=')[1] : null;
   };
   
-  const accessToken = getCookie('access_token'); // Retrieve token
-  // console.log("cookie does get token",accessToken);
-  
+  const accessToken = getCookie('access_token'); // Retrieve token  
 
     if (!accessToken) {
       setIsAuthenticated(false);
@@ -88,41 +90,20 @@ const Navbar = () => {
     fetchProtectedData();
   }, []);
 
-  if (loading) {
-    return null; // Or a loading spinner
-  }
+  if (loading) return <div className="flex flex-col justify-center items-center h-screen">
+      <PuffLoader
+        // color={color}
+        loading={loading}
+        cssOverride={override}
+        size={150}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+        color="yellow"
+      />
+      <h1>Loading...</h1>
+  </div>;
 
   return (
-    // <div className="fixed top-0 left-0 w-full bg-yellow-400 p-3 flex justify-evenly items-center shadow-md z-50">
-    //   <div className="flex items-center gap-3">
-    //     <Link href={'/'}>
-    //       <h1>SUPABETOS</h1>
-    //     </Link>
-    //     <div className="hidden md:block">
-    //     <NavigationMenuDemo />
-    //     </div>
-    //   </div>
-    //   <div className="flex items-center gap-2 ml-48">
-    //     {isAuthenticated ? (
-    //       <>
-    //       <p>Hello {user.user.username}</p>
-    //       <Button onClick={handleLogout} variant='yellow' className="bg-yellow-200">
-    //       {isLoading ? <Loader className="animate-spin" size={20} /> : "Logout"}
-
-    //       </Button>
-    //     </>
-    //     ) : (
-    //       <>
-    //         <Link href={'/sign-up'}>
-    //           <Button>Register</Button>
-    //         </Link>
-    //         <Link href={'/sign-in'}>
-    //           <Button>Login</Button>
-    //         </Link>
-    //       </>
-    //     )}
-    //   </div>
-    // </div>
     <div className="fixed top-0 left-0 w-full bg-yellow-400 p-3 flex justify-between items-center shadow-md z-50">
   {/* Logo */}
   <Link href={'/'}>

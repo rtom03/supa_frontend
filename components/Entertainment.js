@@ -19,7 +19,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { getCookie } from "cookies-next";
 
 const Entertainment = () => {
 
