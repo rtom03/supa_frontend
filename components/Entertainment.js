@@ -15,7 +15,7 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
-  BreadcrumbList,
+  BreadcrumbList,  
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
@@ -31,9 +31,6 @@ const Entertainment = () => {
   const [message, setMessage] = useState('');
   const [room, setRoom] = useState(null);
   const router = useRouter()
-  // const accessToken = getCookie("access_token");
-
-
   const [accessToken, setAccessToken] = useState(null);
 
   useEffect(() => {
@@ -74,10 +71,6 @@ const Entertainment = () => {
       name: '',
       description: '',
     });
-
-  
-
-  // const accessToken = getCookie('access_token'); 
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -130,63 +123,51 @@ const Entertainment = () => {
       <div className="col-span-3 p-2">
         {/* Header */}
         <Breadcrumb>
-      <BreadcrumbList>
-        <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <Link href="/">Home</Link>
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbLink>
-            {/* <Link href="/components">Components</Link> */}
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          {/* <BreadcrumbPage>Breadcrumb</BreadcrumbPage> */}
-        </BreadcrumbItem>
-      </BreadcrumbList>
-    </Breadcrumb>
+          <BreadcrumbList>
+              <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link href="/">Home</Link>
+                  </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+          </BreadcrumbList>
+        </Breadcrumb>
     <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200 mt-3">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center pb-4 border-b gap-3">
-        <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-thin md:font-bold text-gray-800">
-  Entertainments
-</h1>
-
-  <Popover>
-      <PopoverTrigger asChild>
-        <Button variant={'yellow'} className="bg-yellow-400 hover:bg-yellow-300 text-white w-full md:w-auto">Create Room</Button></PopoverTrigger>
-    <PopoverContent>
-      <label>Name</label>
-      <Input
-        type="text"
-        name="name"
-        value={formData.name}
-        onChange={handleChange}
-        required
-      />
-      <label>Description</label>
-      <Textarea
-        name="description"
-        value={formData.description}
-        onChange={handleChange}
-        required
-      />
-      <Button
-        type="submit"
-        variant="yellow"
-        className="hover:bg-yellow-200 text-white w-full mt-2"
-        onClick={handleSubmit}
-        disabled={!accessToken}
-      >
-        {loading ? <Loader className="animate-spin" size={20} /> : "Create room"}
-      </Button>
-    </PopoverContent>
-  </Popover>
-</div>
-
-
+        <div className="flex flex-col  md:flex-row justify-between items-start md:items-center pb-4 border-b gap-3 ">
+            <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-thin md:font-bold text-gray-800 ">
+              Entertainments
+            </h1>
+            <Popover>
+                <PopoverTrigger asChild>
+                   {accessToken && <Button variant={'yellow'} className="bg-yellow-400 hover:bg-yellow-300 text-white w-full md:w-auto">Create Room</Button>}</PopoverTrigger>
+                <PopoverContent>
+                    <label>Name</label>
+                    <Input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                    />
+                    <label>Description</label>
+                    <Textarea
+                      name="description"
+                      value={formData.description}
+                      onChange={handleChange}
+                      required
+                    />
+                    <Button
+                      type="submit"
+                      variant="yellow"
+                      className="hover:bg-yellow-200 text-white w-full mt-2"
+                      onClick={handleSubmit}
+                      disabled={!accessToken}
+                    >
+                      {loading ? <Loader className="animate-spin" size={20} /> : "Create room"}
+                    </Button>
+              </PopoverContent>
+            </Popover>
+        </div>
         {/* Tweets (Bets) */}
         <div className="space-y-6 mt-4">
           {rooms.map((item, index) => (
@@ -209,16 +190,16 @@ const Entertainment = () => {
 
               {/* Description */}
               <p className="mt-2 text-xs sm:text-sm text-gray-700">{item.description}</p>
-      <p className="mt-2 text-xs sm:text-sm text-gray-700">
-        {new Date(item.updated).toLocaleString("en-US", {
-          year: "numeric",
-          month: "short",
-          day: "numeric",
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: true,
-        })}
-      </p>
+              <p className="mt-2 text-xs sm:text-sm text-gray-700">
+                {new Date(item.updated).toLocaleString("en-US", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  hour12: true,
+                })}
+              </p>
       <hr className="my-3 border-gray-300" />
               {/* Actions (Optional - Like, Comment, Share) */}
               <div className="flex justify-between text-gray-500 text-sm">

@@ -56,6 +56,7 @@ export default function RoomPage() {
   const { toast } = useToast()
   const router = useRouter()
   const user = getCookie('user')
+  // const accessToken = getCookie('user')
 
   useEffect(() => {
     if (!roomId) return; // Prevent fetching before roomId is available
@@ -89,7 +90,6 @@ export default function RoomPage() {
         });
         setRoom(response.data);
         // console.log(response.data)
-        console.log(user)
         setMessages(response.data.messages || []);
         setLoading(false);
       } catch (error) {
@@ -103,6 +103,15 @@ export default function RoomPage() {
 
   const handlePostMessage = async () => {
     if (!message.trim()) return;
+     const getCookie = (name) => {
+      if (typeof document !== 'undefined') {
+        const cookies = document.cookie.split('; ');
+        const cookie = cookies.find((row) => row.startsWith(name + '='));
+        return cookie ? cookie.split('=')[1] : null;
+      }
+      return null;
+    };
+    const accessToken = getCookie('access_token')
 
     try {
       const response = await axios.post(
@@ -117,7 +126,7 @@ export default function RoomPage() {
       );
 
       setMessages([...messages, response.data.data]);
-      console.log(accessToken)
+      // console.log(accessToken)
     // Add new message to list
       setMessage(""); // Clear input field
       console.log(response.data)

@@ -24,54 +24,54 @@ export const works = [
     artist: "Vladimir Malyavo",
     art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
   }, {
-    artist: "Vladimir Mlyavko",
+    artist: "ae",
     art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
   }, {
-    artist: "Vladimir yavko",
+    artist: "ol",
     art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
   },
   {
-    artist: "Vladiir Malyavko",
+    artist: "ma",
     art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
   }, {
-    artist: "Vadimir Malyavko",
+    artist: "cl",
     art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
   }, {
-    artist: "Vladr Malyavko",
+    artist: "dr",
     art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
   }, {
-    artist: "Vladimir o",
+    artist: "sr",
     art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
   }, {
-    artist: "Vladimir alavko",
+    artist: "ro",
     art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
   },
   {
-    artist: "Vladmir Malyavko",
+    artist: "qr",
     art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
   }, {
-    artist: "Vladimir Malyavko",
+    artist: "xa",
     art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
   }, {
-    artist: "Vladimr Malyavko",
+    artist: "xb",
     art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
   }, {
-    artist: "Vlad",
+    artist: "xc",
     art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
   }, {
-    artist: "Vl",
+    artist: "xd",
     art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
   }, {
-    artist: "alyavko",
+    artist: "xe",
     art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
   }, {
-    artist: "Vladalyavko",
+    artist: "xf",
     art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
   }, {
-    artist: "Vladimirvko",
+    artist: "xg",
     art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
   }, {
-    artist: "Vladimir Malyavko",
+    artist: "xh",
     art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
   }, {
     artist: "Vladimir Malyvk",

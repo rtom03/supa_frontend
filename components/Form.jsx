@@ -69,59 +69,6 @@ const isDisabled = !formData.username || !formData.comfirm_password;
 
 
   return (
-    // <div className=' flex justify-center items-center mt-24'> 
-    // <div className='flex flex-col g-3 p-7 bg-yellow-500 w-[400px] text-white gap-3 rounded-sm'>
-    //     <h1 className='text-red-600'>Registration</h1>
-       
-    //     <form onSubmit={handleSubmit}>
-    //     <div>
-    //             <Label>Username</Label>
-    //             <Input 
-    //             type="username"
-    //             name="username"
-    //             value={formData.username}
-    //             onChange={handleChange}
-    //             required
-    //             />
-    //     </div>
-    //     <div>
-    //         <Label>Email Address</Label>
-    //                 <Input
-    //                 type="email"
-    //                 name="email"
-    //                 value={formData.email}
-    //                 onChange={handleChange}
-    //                 required
-    //                 />
-    //     </div>
-    //     <div>
-    //             <Label>Password</Label>
-    //                 <Input
-    //                 type="password"
-    //                 name="password"
-    //                 value={formData.password}
-    //                 onChange={handleChange}
-    //                 required
-    //                 />
-    //     </div>
-    //     <div>
-    //             <Label>Comfirm Password</Label>
-    //                 <Input
-    //                 type="password"
-    //                 name="comfirm_password"
-    //                 value={formData.comfirm_password}
-    //                 onChange={handleChange}
-    //                 required
-    //                 />
-    //     </div>
-    //                  <Button  variant="yellow" className=" hover:bg-yellow-300 text-white w-[100%] mt-2" disabled={isDisabled}>
-    //                     {isLoading ? <Loader className="animate-spin" size={20} /> : "Register"}
-    //                  </Button>
-    //                  <strong  className='flex justify-center items-center'>Already have an account?<Link href={'/sign-in'}>Login</Link></strong>
-
-    //          </form>
-    // </div>
-    // </div>
     <div className="flex justify-center items-center min-h-screen p-4">
   <div className="flex flex-col gap-4 p-6 bg-yellow-500 w-full max-w-sm text-white rounded-md shadow-lg">
     <h1 className="text-red-600 text-center text-lg font-semibold">Registration</h1>

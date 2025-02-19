@@ -32,9 +32,6 @@ const Politics = () => {
   const [message, setMessage] = useState('');
   const [room, setRoom] = useState(null);
   const router = useRouter()
-  // const accessToken = getCookie("access_token");
-
-
   const [accessToken, setAccessToken] = useState(null);
 
   useEffect(() => {
@@ -75,10 +72,6 @@ const Politics = () => {
       name: '',
       description: '',
     });
-
-  
-
-  // const accessToken = getCookie('access_token'); 
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -138,22 +131,13 @@ const Politics = () => {
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbLink>
-            {/* <Link href="/components">Components</Link> */}
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          {/* <BreadcrumbPage>Breadcrumb</BreadcrumbPage> */}
-        </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
     <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200 mt-3">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center pb-4 border-b gap-3">
         <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-thin md:font-bold text-gray-800">
-  Politics
-</h1>
+          Politics
+        </h1>
 
   <Popover>
       <PopoverTrigger  className="hover:bg-yellow-200 text-white w-full md:w-auto">Create Room</PopoverTrigger>
