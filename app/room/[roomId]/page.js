@@ -74,7 +74,7 @@ export default function RoomPage() {
     
     const fetchRoom = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}room/${roomId}`, {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/room/${roomId}`, {
           headers: {
             Authorization: `Bearer ${accessToken}`, // Ensure authentication
           },
@@ -131,7 +131,7 @@ export default function RoomPage() {
   const handleDelete = async ()=>{
          try{
 
-          const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}room/${roomId}/delete/`,{
+          const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/room/${roomId}/delete/`,{
             headers:{
               Authorization:`Bearer ${accessToken}`,
               "Content-Type": "application/json",

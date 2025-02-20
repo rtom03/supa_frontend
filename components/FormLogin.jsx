@@ -33,7 +33,7 @@ const handleSubmit = async (e) => {
         await new Promise((resolve) => setTimeout(resolve, 2000));
         setLoading(true)
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}login/`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
