@@ -50,7 +50,7 @@ const Entertainment = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/?q=${searchQuery}`);
+      const response = await axios.get(`https://supa-arzf.onrender.com/?q=${searchQuery}`);
       setRooms(response.data.rooms);
       setRoomCount(response.data.room_count);
       setRoomMessages(response.data.room_message);
@@ -80,7 +80,7 @@ const Entertainment = () => {
       
 
       // 'http://127.0.0.1:8000
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/createroom/`, {
+        const response = await fetch(`https://supa-arzf.onrender.com/createroom/`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
