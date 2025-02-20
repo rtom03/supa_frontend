@@ -40,7 +40,7 @@ const Navbar = () => {
     }
 
     try {
-      const response = await fetch('https://supa-arzf.onrender.com/protected-endpoint/', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}protected-endpoint/`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${accessToken}`,

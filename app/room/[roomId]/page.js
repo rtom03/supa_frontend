@@ -55,8 +55,9 @@ export default function RoomPage() {
   let [color, setColor] = useState("#ffffff");
   const { toast } = useToast()
   const router = useRouter()
-  const user = getCookie('user')
-  // const accessToken = getCookie('user')
+  const user = getCookie('user');
+  const parsedUser = user ? JSON.parse(user) : {};
+  const accessToken = getCookie('access_token')
 
   useEffect(() => {
     if (!roomId) return; // Prevent fetching before roomId is available
@@ -73,16 +74,7 @@ export default function RoomPage() {
     
     const fetchRoom = async () => {
       try {
-      //   const getCookie = (name) => {
-      //     const cookies = document.cookie.split('; ');
-      //     const cookie = cookies.find(row => row.startsWith(name + '='));
-      //     return cookie ? cookie.split('=')[1] : null;
-      // };
-      
-      // const accessToken = getCookie('access_token'); 
-      // console.log("cookie got the token",accessToken)
-
-        const response = await axios.get(`https://supa-arzf.onrender.com/room/${roomId}/`, {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}room/${roomId}`, {
           headers: {
             Authorization: `Bearer ${accessToken}`, // Ensure authentication
           },
@@ -92,6 +84,7 @@ export default function RoomPage() {
         // console.log(response.data)
         setMessages(response.data.messages || []);
         setLoading(false);
+        console.log(parsedUser)
       } catch (error) {
         console.error("Error fetching room data:", error);
         setLoading(false);
@@ -115,7 +108,7 @@ export default function RoomPage() {
 
     try {
       const response = await axios.post(
-        `https://supa-arzf.onrender.com/room/${roomId}/`,
+        `${process.env.NEXT_PUBLIC_API_URL}room/${roomId}/`,
         { body: message },
         {
           headers: {
@@ -138,7 +131,7 @@ export default function RoomPage() {
   const handleDelete = async ()=>{
          try{
 
-          const response = await axios.delete(`https://supa-arzf.onrender.com/room/${roomId}/delete/`,{
+          const response = await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}room/${roomId}/delete/`,{
             headers:{
               Authorization:`Bearer ${accessToken}`,
               "Content-Type": "application/json",
@@ -218,7 +211,7 @@ export default function RoomPage() {
       </BreadcrumbList>
     </Breadcrumb>
     {/* {room.host == room.host && <Button>Delete Room</Button>} */}
-   {user.username === room.host.username &&
+   {parsedUser.username === room.host.username &&
     <AlertDialog>
   <AlertDialogTrigger>
     <Button variant={'destructive'} className="w-full sm:w-auto">Delete Room</Button></AlertDialogTrigger>

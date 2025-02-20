@@ -28,7 +28,7 @@ const Form = () => {
     try {
         await new Promise((resolve) => setTimeout(resolve, 1000))
         setIsLoading(true)
-        const response = await fetch('https://supa-arzf.onrender.com/register/', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}register/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

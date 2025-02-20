@@ -1,13 +1,14 @@
 import { Input } from './ui/input'
 import { Button } from './ui/button'
 import { Label } from './ui/label'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Cookies from "js-cookie"; // Install with `npm install js-cookie`
 import { Loader } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 import { ToastAction } from './ui/toast';
+import { PuffLoader } from 'react-spinners';
 
 
 
@@ -18,10 +19,12 @@ const FormLogin = () => {
     password: ''
 });
 
+
 const [loading,setLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true); // State to handle loading state
+
 const router = useRouter()
 const { toast } = useToast()
-
 
 
 const handleSubmit = async (e) => {
@@ -30,7 +33,7 @@ const handleSubmit = async (e) => {
         await new Promise((resolve) => setTimeout(resolve, 2000));
         setLoading(true)
 
-        const response = await fetch('https://supa-arzf.onrender.com/login/', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}login/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -47,14 +50,7 @@ const handleSubmit = async (e) => {
 
 
             Cookies.set('user', JSON.stringify(data.user));
-
-
-            // console.log("Tokens saved:", data.tokens);
-            // console.log("User details:", data.user);
-
-            // Redirect or update UI
             router.push('/');
-             // Example: Redirect to dashboard
         } else {
             toast({
                 variant: "destructive",
@@ -70,6 +66,77 @@ const handleSubmit = async (e) => {
     }
 };
 
+
+// const refreshAccessToken = async () => {
+//   try {
+//       const refreshToken = Cookies.get('refresh_token');
+//       if (!refreshToken) {
+//           throw new Error("No refresh token available");
+//       }
+
+//       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}token/refresh/`, {
+//           method: 'POST',
+//           headers: { 'Content-Type': 'application/json' },
+//           body: JSON.stringify({ refresh: refreshToken }),
+//       });
+
+//       const data = await response.json();
+//       if (response.ok) {
+//           // Save new access token
+//           Cookies.set('access_token', data.access, { secure: true, sameSite: 'Strict' });
+//           localStorage.setItem('access_token', data.access);
+
+//           return data.access;
+//       } else {
+//           throw new Error("Failed to refresh token");
+//       }
+//   } catch (error) {
+//       console.error("Error refreshing token:", error);
+//       logoutUser();
+//   }
+// };
+
+
+// const fetchWithAuth = async (url, options = {}) => {
+//   let accessToken = Cookies.get('access_token');
+
+//   const response = await fetch(url, {
+//       ...options,
+//       headers: {
+//           ...options.headers,
+//           Authorization: `Bearer ${accessToken}`
+//       }
+//   });
+
+//   if (response.status === 401) {
+//       // Access token might be expired, refresh it
+//       accessToken = await refreshAccessToken();
+//       if (!accessToken) {
+//           throw new Error("Unable to refresh access token");
+//       }
+
+//       // Retry request with new token
+//       return fetch(url, {
+//           ...options,
+//           headers: {
+//               ...options.headers,
+//               Authorization: `Bearer ${accessToken}`
+//           }
+//       });
+//   }
+
+//   return response;
+// };
+
+
+
+// useEffect(() => {
+//     const refreshInterval = setInterval(refreshAccessToken, 15 * 60 * 1000); // Refresh every 15 minutes
+//     return () => clearInterval(refreshInterval);
+// }, []);
+
+
+
 const handleChange = (e) => {
     setFormData({
         ...formData,
@@ -78,6 +145,7 @@ const handleChange = (e) => {
 };
 
 const isDisabled = !formData.username || !formData.password;
+
   return (
    
     <div className="flex justify-center items-center min-h-screen p-4">
