@@ -11,74 +11,96 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 export const works = [
   {
     artist: "Ornella Binni",
-    art: "https://images.unsplash.com/photo-1465869185982-5a1a7522cbcb?auto=format&fit=crop&w=300&q=80",
+    art: "/banner.jpeg",
   },
   {
     artist: "Tom Byrom",
-    art: "https://images.unsplash.com/photo-1548516173-3cabfa4607e9?auto=format&fit=crop&w=300&q=80",
+    art: "/banner.jpeg",
+
   },
   {
     artist: "Vladimir Malyavk",
-    art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
+    art: "/banner.jpeg",
+
   }, {
     artist: "Vladimir Malyavo",
-    art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
+    art: "/banner.jpeg",
+
   }, {
     artist: "ae",
-    art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
+    art: "/banner.jpeg",
+
   }, {
     artist: "ol",
-    art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
+    art: "/banner.jpeg",
+
   },
   {
     artist: "ma",
-    art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
+    art: "/banner.jpeg",
+
   }, {
     artist: "cl",
-    art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
+    art: "/banner.jpeg",
+
   }, {
     artist: "dr",
-    art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
+    art: "/banner.jpeg",
+
   }, {
     artist: "sr",
-    art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
+    art: "/banner.jpeg",
+
   }, {
     artist: "ro",
-    art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
+    art: "/banner.jpeg",
+
   },
   {
     artist: "qr",
-    art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
+    art: "/banner.jpeg",
+
   }, {
     artist: "xa",
-    art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
+    art: "/banner.jpeg",
+
+
   }, {
     artist: "xb",
-    art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
+    art: "/banner.jpeg",
+
   }, {
     artist: "xc",
-    art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
+    art: "/banner.jpeg",
+
   }, {
     artist: "xd",
-    art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
+    art: "/banner.jpeg",
+
   }, {
     artist: "xe",
-    art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
+    art: "/banner.jpeg",
+
   }, {
     artist: "xf",
-    art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
+    art: "/banner.jpeg",
+
   }, {
     artist: "xg",
-    art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
+    art: "/banner.jpeg",
+
   }, {
     artist: "xh",
-    art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
+    art: "/banner.jpeg",
+
   }, {
     artist: "Vladimir Malyvk",
-    art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
+    art: "/banner.jpeg",
+
   }, {
     artist: "Vladimo",
-    art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
+    art: "/banner.jpeg",
+
   },
 ]
 

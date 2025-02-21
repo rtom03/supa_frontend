@@ -119,7 +119,7 @@ const Navbar = () => {
   <div className="flex items-center gap-2">
     {isAuthenticated ? (
       <>
-        <p className="text-sm">Hello {user.user.username}</p>
+         <Link href={'/profile'}><p className="text-sm">Hello {user.user.username}</p></Link>
         <Button onClick={handleLogout} variant="yellow" className="bg-yellow-200 text-sm">
           {isLoading ? <Loader className="animate-spin" size={20} /> : "Logout"}
         </Button>
