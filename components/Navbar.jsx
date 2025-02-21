@@ -21,7 +21,6 @@ const Navbar = () => {
   };
 
 
-  // Function to fetch protected data and check authentication
   const fetchProtectedData = async () => {
 
     // const accessToken = localStorage.getItem('access_token');
